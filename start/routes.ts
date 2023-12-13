@@ -24,3 +24,6 @@ Route.get('/', async () => ({ message: 'Welcome' }))
 
 Route.get('/categories', 'CategoriesController.index')
 Route.get('/categories/:id', 'CategoriesController.show')
+
+Route.get('/drinks', 'DrinksController.index')
+Route.get('/drinks/:id', 'DrinksController.show')
