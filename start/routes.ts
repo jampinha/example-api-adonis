@@ -23,3 +23,4 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => ({ message: 'Welcome' }))
 
 Route.get('/categories', 'CategoriesController.index')
+Route.get('/categories/:id', 'CategoriesController.show')
