@@ -22,6 +22,23 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async () => ({ message: 'Welcome' }))
 
+Route.post('/authenticate', async ({ auth, request, response }) => {
+  const email = request.param('email')
+  const password = request.param('password')
+
+  console.log({ email, password })
+
+  try {
+    const token = await auth.use('api').attempt(email, password, {
+      name: 'For the API access',
+      expiresIn: '60 mins',
+    })
+    return token
+  } catch {
+    return response.unauthorized({ error: 'UNAUTHORIZED', message: 'Invalid credentials' })
+  }
+})
+
 Route.get('/categories', 'CategoriesController.index')
 Route.get('/categories/:id', 'CategoriesController.show')
 
