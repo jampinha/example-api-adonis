@@ -13,6 +13,7 @@ export default class CategoriesController {
 
     if (!category) return response.notFound()
 
+    await category.load('drinks')
     return response.ok(category)
   }
 }
